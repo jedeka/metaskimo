@@ -1,4 +1,7 @@
-# Skill-based Model-based Meta RL (MetaSkiMo)
+# Skill-based Model-based Meta RL (MetaSkiMo) (Temporary)
+
+## NOTE
+More update TBD.
 
 ## Getting started
 - We need to setup conda environment. For the experiment, we used conda with python==3.9
