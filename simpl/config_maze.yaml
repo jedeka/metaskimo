@@ -1,0 +1,202 @@
+rolf:
+  device: cuda
+  name: skimo
+  precision: 32
+  phase: rl
+  max_global_step: 2000000
+  warm_up_step: 50000
+  train_every: 500
+  log_every: 500
+  evaluate_every: 5000
+  ckpt_every: 50000
+  reward_scale: 1
+  batch_size: 128
+  ob_norm: false
+  max_ob_norm_step: 100000000
+  clip_obs: 'inf'
+  clip_range: 10
+  policy_mlp_dim:
+  - 256
+  - 256
+  policy_activation: relu
+  tanh_policy: true
+  gaussian_policy: true
+  actor_lr: 0.001
+  actor_weight_decay: 0
+  min_std: 0.01
+  max_std: 0.5
+  use_log_std_bias: true
+  target_init_std: 0.5
+  encoder_type: mlp
+  encoder_image_size:
+  - 84
+  - 84
+  encoder_conv_dim: 32
+  encoder_kernel_size:
+  - 3
+  - 3
+  - 3
+  - 3
+  encoder_stride:
+  - 2
+  - 1
+  - 1
+  - 1
+  encoder_conv_output_dim: 50
+  encoder_soft_update_weight: 0.95
+  asym_ac: false
+  n_skill: 10
+  skill_horizon: 10
+  skill_dim: 10
+  pretrain:
+    max_global_step: 200000
+    train_iter: 5
+    log_every: 100
+    evaluate_every: 500
+    ckpt_every: 5000
+    batch_size: 512
+    split:
+      train: 0.99
+      val: 0.01
+      test: 0.0
+    n_vis: 1
+    data_path: data/maze.gz
+  joint_training: true
+  freeze_model: false
+  sac: false
+  sample_last_more: true
+  use_prior: true
+  prior_reg_critic: false
+  fixed_alpha: null
+  alpha_init: 1
+  alpha_lr: 0.0003
+  target_divergence: 3
+  alpha_step: 25000
+  train_iter: 10
+  pretrain_ckpt_path: null
+  rl_discount: 0.99
+  buffer_size: 1000000
+  target_update_freq: 2
+  target_update_tau: 0.99
+  joint_lr: 0.001
+  model_lr: 0.001
+  grad_clip: 100.0
+  scalars:
+    hl_actor: 1
+    hl_model: 1
+    hl_reward: 0.5
+    hl_value: 0.1
+    ll_actor: 2
+    consistency: 2
+    rho: 0.5
+    encoder_kl: 0.0001
+    hl_prior: 1
+  max_divergence: 100
+  use_cem: true
+  cem_iter: 3
+  num_elites: 24
+  num_sample_traj: 64 #512
+  num_policy_traj: 12 #25
+  cem_momentum: 0.1
+  cem_temperature: 0.5
+  std_step: 1000000
+  horizon_step: 1000000
+  state_dim: 128
+  num_units: 128
+  num_layers: 4
+  dense_act: elu
+  weight_decay: 0.0
+  log_std: true
+  lstm: false
+  lstm_units: 128
+  encoder:
+    image_shape:
+    - 32
+    - 32
+    - 3
+    kernel_size:
+    - 4
+    - 4
+    - 4
+    - 2
+    stride:
+    - 2
+    - 2
+    - 2
+    - 1
+    conv_dim:
+    - 32
+    - 64
+    - 128
+    - 256
+    cnn_act: relu
+    embed_dim: ${..num_units}
+    hidden_dims: []
+    dense_act: elu
+  decoder:
+    image_shape:
+    - 32
+    - 32
+    - 3
+    kernel_size:
+    - 5
+    - 5
+    - 6
+    - 3
+    stride:
+    - 2
+    - 2
+    - 2
+    - 1
+    conv_dim:
+    - 1024
+    - 128
+    - 64
+    - 32
+    cnn_act: relu
+    hidden_dims:
+    - ${...num_units}
+    - ${...num_units}
+    dense_act: elu
+  env: maze
+env:
+  id: maze
+  reward_norm: 1.0
+  screen_size:
+  - 32
+  - 32
+  action_repeat: 1
+  frame_stack: 1
+  absorbing_state: false
+  pixel_ob: false
+  state_ob: true
+  agent_centric_view: false
+  max_episode_steps: 2000
+deterministic: false
+seed: 0
+is_train: true
+init_ckpt_path: null
+init_ckpt_pretrained: false
+gpu: 0
+pretrain: true
+pretrain_max_step: 1000000.0
+ckpt_num: null
+num_eval: 1
+record_video: true
+record_video_caption: true
+record_demo: false
+run_prefix: test_pretrain
+notes: null
+log_root_dir: log
+wandb: true
+wandb_entity: jedeka30
+wandb_project: skimo@jamu
+run_name: maze.skimo.pretrain.test_pretrain.0
+log_dir: log/maze.skimo.pretrain.test_pretrain.0
+video_dir: log/maze.skimo.pretrain.test_pretrain.0/video
+demo_dir: log/maze.skimo.pretrain.test_pretrain.0/demo
+ckpt_dir: log/maze.skimo.pretrain.test_pretrain.0/ckpt
+replay_dir: log/maze.skimo.pretrain.test_pretrain.0/replay
+rank: 0
+is_chef: true
+num_workers: 1
