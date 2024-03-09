@@ -1,7 +1,9 @@
 # Skill-based Model-based Meta RL (MetaSkiMo) (Temporary)
 
 ## NOTE
-More update TBD.
+This project aims to leverage skills and skill dynamics (model) to improve Meta Reinforcement Learning algorithm that learns how to do new downstream tasks in several robot learning environments (_e.g_ D4RL Maze and Kitchen).
+
+This is an ongoing project, more update TBD.
 
 ## Getting started
 - We need to setup conda environment. For the experiment, we used conda with python==3.9
